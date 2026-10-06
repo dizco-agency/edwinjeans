@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDWIN Jeans — Performance Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0A;--ink2:#3D3D3B;--gray:#6E6D6A;--line:#E8E7E3;--card:#FAFAF8;--or:#FF5A00;--orS:#FFEEE4;--mute:#D6D5D1;color-scheme:light}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui,sans-serif;background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);padding:22px 0}
+.hd{display:flex;align-items:center;gap:12px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--ink);position:relative;flex-shrink:0}
+.mark::after{content:"";position:absolute;right:6px;bottom:6px;width:12px;height:12px;border-radius:4px;background:var(--or)}
+.wm{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.wm span{color:var(--or)}
+.by{margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--or);background:var(--orS);padding:5px 12px;border-radius:999px}
+.hero{padding:52px 0 36px}
+.kick{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--or)}
+h1{font-size:46px;font-weight:600;letter-spacing:-.03em;line-height:1.08;margin:12px 0 14px}
+.lead{font-size:17px;color:var(--ink2);line-height:1.6;max-width:560px}
+.lead span{display:block}.lead span+span{margin-top:6px}
+.pill{display:inline-block;margin-top:20px;font-size:13px;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
+h2{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin:14px 0 14px}
+.mo{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;background:#fff}
+.mo .top{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none}
+.mo .top:hover{background:var(--card)}
+.mo .nm{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.mo .ct{font-size:13px;color:var(--gray);margin-left:auto}
+.mo .chev{width:9px;height:9px;border-right:2px solid var(--gray);border-bottom:2px solid var(--gray);transform:rotate(45deg);transition:transform .2s;margin-top:-4px}
+.mo.open .chev{transform:rotate(-135deg);margin-top:2px}
+.mo .body{display:none;border-top:1px solid var(--line);padding:6px 22px 16px}
+.mo.open .body{display:block}
+.row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row .t{font-size:16px;font-weight:500}
+.row .s{font-size:13px;color:var(--gray);margin-top:2px}
+.row a,.row .soon{margin-left:auto;font-size:14px;font-weight:500;border-radius:999px;padding:9px 18px;white-space:nowrap}
+.row a{background:var(--or);color:#fff;text-decoration:none;transition:background .15s}
+.row a:hover{background:#E64F00}
+.row .soon{background:var(--card);color:var(--gray);border:1px solid var(--line)}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 40px;font-size:13px;color:var(--gray);line-height:1.6}
+footer span{display:block}
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  h1{font-size:32px}.lead{font-size:16px}
+  .hero{padding:34px 0 26px}
+  .mo .top{padding:15px 16px;gap:10px}.mo .nm{font-size:17px}.mo .body{padding:6px 16px 14px}
+  .row{flex-wrap:wrap;gap:8px}.row a,.row .soon{margin-left:0;width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <div class="mark"></div>
+  <div class="wm">EDWIN<span>.</span> Reports</div>
+  <div class="by">by DIZCO</div>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kick">EDWIN Indonesia &times; DIZCO</div>
+    <h1>Performance Reports</h1>
+    <div class="lead">
+      <span>Laporan performa program affiliate TikTok Shop yang kami jalankan.</span>
+      <span>Tiap laporan dikunci password. Password dikirim terpisah lewat WhatsApp.</span>
+    </div>
+    <div class="pill" id="pill">Memuat…</div>
+  </div>
+
+  <h2>Daftar Laporan</h2>
+  <div id="list"></div>
+
+  <footer>
+    <span>Disusun oleh DIZCO &middot; dizco.id</span>
+    <span>Butuh password atau ada pertanyaan soal angkanya? Hubungi tim DIZCO.</span>
+  </footer>
+</div>
+
+<script>
+var MONTHS=[
+  {folder:'september', label:'September 2026', reports:[
+    {t:'Laporan Bulanan', s:'Periode 1–30 September 2026', f:'monthly.html'}
+  ]}
+];
+var list=document.getElementById('list'),pill=document.getElementById('pill');
+var ready=0,total=0,pending=0,firstOpen=null;
+
+MONTHS.forEach(function(m,mi){
+  var card=document.createElement('div');card.className='mo';
+  var rows=m.reports.map(function(r,ri){
+    total++;
+    return '<div class="row"><div><div class="t">'+r.t+'</div><div class="s">'+r.s+'</div></div>'+
+      '<span class="soon" data-slot="'+mi+'-'+ri+'">Segera</span></div>';
+  }).join('');
+  card.innerHTML='<div class="top"><div class="nm">'+m.label+'</div>'+
+    '<div class="ct" data-ct="'+mi+'">—</div><div class="chev"></div></div>'+
+    '<div class="body">'+rows+'</div>';
+  card.querySelector('.top').addEventListener('click',function(){card.classList.toggle('open');});
+  list.appendChild(card);
+
+  m.reports.forEach(function(r,ri){
+    var url=m.folder+'/'+r.f;pending++;
+    fetch(url,{method:'HEAD'}).then(function(res){
+      if(res.ok){
+        ready++;
+        var slot=card.querySelector('[data-slot="'+mi+'-'+ri+'"]');
+        var a=document.createElement('a');a.href=url;a.textContent='Buka laporan';
+        slot.parentNode.replaceChild(a,slot);
+        if(firstOpen===null){firstOpen=card;card.classList.add('open');}
+      }
+    }).catch(function(){}).then(function(){
+      pending--;
+      var n=card.querySelectorAll('.row a').length;
+      card.querySelector('[data-ct="'+mi+'"]').textContent=n?n+' laporan siap':'Segera';
+      if(pending===0) pill.textContent=ready?ready+' dari '+total+' laporan siap dibuka':'Belum ada laporan yang tayang';
+    });
+  });
+});
+if(total===0) pill.textContent='Belum ada laporan';
+</script>
+</body>
+</html>
